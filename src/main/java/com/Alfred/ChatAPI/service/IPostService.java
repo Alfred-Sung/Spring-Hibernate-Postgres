@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface IPostService {
     PostModel addPost(Long boardID, Long userID, String text);
 
-    Optional<PostModel> getPostByID(Long userID, Long postID);
+    Optional<PostModel> getPostByID(Long boardID, Long postID);
 
     int deletePostByID(Long userID, Long postID);
 

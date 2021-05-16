@@ -120,12 +120,13 @@ public class PostController {
             "{" + ProjectConfig.URIPath.BOARD + "}/" +
                     "{" + ProjectConfig.URIPath.POST + "}"
     )
-    public void updatePostByID(
+    public PostModel updatePostByID(
             @PathVariable(ProjectConfig.URIPath.BOARD) Long boardID,
             @PathVariable(ProjectConfig.URIPath.POST) Long postID,
             @Valid @NonNull @RequestBody ObjectNode jsonNodes
     ) {
         if (!jsonNodes.has("text")) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "'text' field not found");
-        postService.updatePostByID(boardID, postID, jsonNodes.get("text").asText());
+
+        return postService.updatePostByID(boardID, postID, jsonNodes.get("text").asText());
     }
 }

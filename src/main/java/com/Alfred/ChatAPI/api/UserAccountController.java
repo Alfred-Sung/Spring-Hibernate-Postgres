@@ -47,10 +47,10 @@ public class UserAccountController {
     public void deleteUserByID(@PathVariable(ProjectConfig.URIPath.USER) Long userID) { userService.deleteUserByID(userID); }
 
     @PutMapping(path = "{" + ProjectConfig.URIPath.USER + "}")
-    public void updateUserByID(@PathVariable(ProjectConfig.URIPath.USER) Long userID, @Valid @NonNull @RequestBody ObjectNode jsonNodes) {
+    public UserAccountModel updateUserByID(@PathVariable(ProjectConfig.URIPath.USER) Long userID, @Valid @NonNull @RequestBody ObjectNode jsonNodes) {
         if (!jsonNodes.has("first-name")) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "'first-name' field not found");
         if (!jsonNodes.has("last-name")) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "'last-name' field not found");
 
-        userService.updateUserByID(userID, jsonNodes.get("first-name").asText(), jsonNodes.get("last-name").asText());
+        return userService.updateUserByID(userID, jsonNodes.get("first-name").asText(), jsonNodes.get("last-name").asText());
     }
 }

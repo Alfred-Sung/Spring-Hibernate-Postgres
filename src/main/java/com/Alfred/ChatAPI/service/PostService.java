@@ -46,7 +46,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public Optional<PostModel> getPostByID(Long userID, Long postID) {
+    public Optional<PostModel> getPostByID(Long boardId, Long postID) {
         return postDAO.getPostByID(postID);
     }
 
